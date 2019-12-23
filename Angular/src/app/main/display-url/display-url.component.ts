@@ -38,8 +38,9 @@ export class DisplayUrlComponent implements OnInit, OnDestroy {
   // on user clicked the browse button
   onURLClicked() {
     if (this.urlDetails) {
+      let url = this.isTiny ? this.urlDetails.shortUrl : this.urlDetails.longUrl;
       window.open(
-        this.urlDetails.longUrl,
+        url,
         '_blank'
       );
     }
