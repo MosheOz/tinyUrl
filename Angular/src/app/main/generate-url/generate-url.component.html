@@ -1,0 +1,28 @@
+<div *ngIf="isLoading" style="text-align: center;">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+
+<form (ngSubmit)="onSubmit(f)" #f="ngForm" *ngIf="!isLoading">
+
+    <div class="input-group mt-3">
+        <input (input)="this.error = null;" type="url" id="url" class="form-control mb-3" #url="ngModel" ngModel name="url"
+            required pattern="https?://.+" placeholder="https://www.google.com">
+        <button class="btn btn-primary mt-5 btn-block" type="submit" [disabled]="!f.valid">
+            {{ isShortenRequest ? 'Get Tiny URL' : 'Get Long URL'}}
+        </button>
+        <button class="btn btn-warning btn-block mt-3" type="button" (click)="onSwitchMode()">
+            {{ isShortenRequest ? 'Switch To Get Long URL' : 'Switch To Get Tiny URL'}}
+        </button>
+    </div>
+
+    <div style="text-align: center;" *ngIf="url.errors?.required &&  url.touched" class="alert alert-danger mt-3">
+        Url is required.
+    </div>
+    <div style="text-align: center;" *ngIf="url.errors?.pattern &&  url.touched" class="alert alert-danger mt-3">
+        Invalid Url.
+    </div>
+</form>
+
+<div *ngIf="error" style="text-align: center;">
+    <div class="alert alert-danger mt-5">{{ error }}</div>
+</div>

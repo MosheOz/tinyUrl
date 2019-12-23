@@ -1,0 +1,17 @@
+<div class="row mt-5 urlStyle">
+    <div class="col-md-12">
+        <div class="card text-center" *ngIf="urlDetails">
+            <div class="card-header">
+                URL Details
+            </div>
+            <div class="card-body">
+                <h5>{{ isTiny ? 'Short Url' : 'Long Url'}}</h5>
+                <p>{{ isTiny ? urlDetails.shortUrl : urlDetails.longUrl }}</p>
+                <button class="btn btn-primary" type="button" (click)="onURLClicked()">{{ isTiny ? urlDetails.shortUrl : urlDetails.longUrl }}</button>
+            </div>
+            <div class="card-footer text-muted">
+                {{ urlDetails.date | date:'short' }}
+            </div>
+        </div>
+    </div>
+</div>
